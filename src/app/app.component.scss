@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid yellow;
+
+  h3 {
+    text-align: center;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    // height: calc(100vh - 10px);
+  }
+}
