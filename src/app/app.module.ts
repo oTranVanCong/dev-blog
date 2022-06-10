@@ -9,6 +9,7 @@ import { CComponent } from './c/c.component';
 import { DComponent } from './d/d.component';
 import { EComponent } from './e/e.component';
 import { FComponent } from './f/f.component';
+import { GComponent } from './g/g.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FComponent } from './f/f.component';
     CComponent,
     DComponent,
     EComponent,
-    FComponent
+    FComponent,
+    GComponent
   ],
   imports: [
     BrowserModule,

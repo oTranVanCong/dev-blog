@@ -13,10 +13,14 @@ body {
 
   h3 {
     text-align: center;
+    margin: 10px 0;
   }
   .buttons {
     margin-top: 10px;
     padding: 10px;
     border-top: 2px solid #ccc;
+  }
+  .child-components {
+    display: flex;
   }
 }
