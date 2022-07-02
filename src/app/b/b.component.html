@@ -6,6 +6,17 @@
   </div>
   <div class="buttons">
     <button (click)="onClick()">Click here to trigger change detection</button>
-  </div>  
+  </div>
+  <div><strong>User:</strong> {{ user | json }}</div>
+
+  <div>
+    <strong>Async Pipe:</strong>
+    <ng-container *ngIf="user$ | async as user; else initUser">
+       {{ user | json }}
+    </ng-container>
+    <ng-template #initUser>
+      {{ user | json }}
+    </ng-template>
+  </div>
 </div>
-<app-d [data]="data"></app-d>
+<app-d [user]="user"></app-d>

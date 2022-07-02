@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { Mock } from '../app.model';
-import { AppService } from '../app.service';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-b',
@@ -14,22 +15,28 @@ import { AppService } from '../app.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BComponent implements OnInit, DoCheck {
-  data: Mock[] = []
+  user: User = { name: 'BBB', age: 20 };
+  user$!: Observable<User>;
 
-  constructor(private service: AppService) { }
+  constructor(private service: UserService, private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-    this.service.getData()
+  ngOnInit(): void {    
+    this.service.getUser()
     .pipe(take(1))
-    .subscribe(data => {
+    .subscribe(user => {
       console.log(`
       ================================
-      BComponent::getData::subscribe
+      BComponent::getUser::subscribe
       ================================
       `);    
 
-      this.data = data
-    });    
+      this.user = user;
+      // Leave this comment to view affect UI
+      this.cdr.markForCheck();
+    });
+
+    // Assignment for using async pipe
+    this.user$ = this.service.getUser();
   }
 
 
@@ -50,6 +57,12 @@ export class BComponent implements OnInit, DoCheck {
     ================================
     BComponent::onClick
     ================================
-    `);    
+    `);  
+    
+    // Change reference of user object
+    // Leave comment under line of code to view affect UI
+    // this.user = { name: 'onClickB', age: 20 };
+    
+    this.user.name = 'onClickB';
   }
 }

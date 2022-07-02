@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +6,8 @@ import { Component, DoCheck, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   host: {
     'class': 'component'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, DoCheck {
   title = 'onpush-change-detection';
@@ -15,6 +16,6 @@ export class AppComponent implements OnInit, DoCheck {
   }
   
   ngDoCheck(): void {
-    console.log('RootComponent::ngDoCheck::Change detection working!!!');    
+    console.log('AppComponent::ngDoCheck::Change detection working!!!');    
   }
 }

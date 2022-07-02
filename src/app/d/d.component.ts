@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DoCheck, Input, OnInit } from '@angular/core';
 
-import { Mock } from '../app.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-d',
@@ -11,17 +11,16 @@ import { Mock } from '../app.model';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DComponent implements OnInit, DoCheck {
+export class DComponent implements OnInit, DoCheck  {
 
-  @Input() data: Mock[] = [];
+  @Input() user!: User;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-
   ngDoCheck(): void {
-    console.log('DComponent::ngDoCheck::Change detection working!!!');    
+    console.log('DComponent::ngDoCheck::Change detection working!!!');
   }
 
   onKeyPress(): void {
