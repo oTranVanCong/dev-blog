@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Event binding example</h1>
+
+  <button (click)="onEnable()">Enable Input</button>
+
+  <div class="field">
+    <label for="input">Click [Enable Input] to start typing text</label>
+    <input type="text" id="input" [disabled]="disabledInput" (keypress)="onKeyPress($event)">
+    <span>Last Inputed Key: {{ lastInputedKey }}</span>
+  </div>
+</div>
